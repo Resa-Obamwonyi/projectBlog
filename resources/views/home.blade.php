@@ -12,7 +12,8 @@
   }
 
   .p_image{
-        max-width: 200px;
+        max-width: 500px;
+        border-radius:20%;
     }
 </style>
 
@@ -28,7 +29,7 @@
 
                 <div class="card-header">Dashboard</div>
 
-                <div class="card-body row ">
+                <div class="card-body row">
                 <div class="col-sm-4">
 
                 @if(!empty($profile))
@@ -43,7 +44,7 @@
 
                 @if(!empty($profile))
 
-                 <h4 class="dis">{{ $profile->name}}</h4>
+                 <h4 class="dis" style="padding-top: 15px;">{{ $profile->name}}</h4>
 
                 @else
 
@@ -53,7 +54,7 @@
                  <h4 class="dis">{{ $profile->designation}}</h4>
                 
                 @else
-
+ 
                 @endif   
 
                 </div>
@@ -62,9 +63,35 @@
                 @if(count ($posts) > 0)
 
                       @foreach($posts->all() as $post)
-                          <h4>{{$post->post_title}}</h4>
-                          <img src="/storage/postimages/{{$post->post_image }}" class="p_image">
-                          <p>{{ $post->post_body }}</p>
+                          <h2 style="padding-top: 10px; text-align: center;">{{$post->post_title}}</h2>
+                          <img style="padding-top: 15px;" src="/storage/postimages/{{$post->post_image }}" class="p_image">
+                          <p style="padding-top: 15px;">{{ substr( $post->post_body, 0, 150) }}</p>
+                           
+                           <ul class="nav nav-pills">
+
+                             <li role="presentation" style=" padding-right:20px;">
+                               <a href="">
+                                 <span class="fa fa-eye"> View</span>
+                               </a>
+                             </li>
+
+                             <li role="presentation" style=" padding-right:20px;">
+                               <a href="">
+                                 <span class="fa fa-pencil"> Edit</span>
+                               </a>
+                             </li>
+
+                             <li role="presentation" style=" padding-right:20px;">
+                               <a href="">
+                                 <span class="fa fa-trash"> Delete</span>
+                               </a>
+                             </li>
+
+                           </ul>
+
+                          <cite style="float: left;">Posted on: {{date('M j, Y H:i', strtotime($post->update_at))}}</cite>
+
+                          <hr>
                       @endforeach
 
                 @else
