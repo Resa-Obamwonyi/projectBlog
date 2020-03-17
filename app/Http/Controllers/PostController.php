@@ -45,4 +45,12 @@ class PostController extends Controller
 
     	 
     }
+
+  public function view($post_id){
+  	 return $post_id;
+  }
+
+  public function edit($post_id){
+  	 return $post_id;
+  }
 }

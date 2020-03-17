@@ -70,19 +70,19 @@
                            <ul class="nav nav-pills">
 
                              <li role="presentation" style=" padding-right:20px;">
-                               <a href="">
+                               <a href='{{ url("/view/{$post->id}") }}'>
                                  <span class="fa fa-eye"> View</span>
                                </a>
                              </li>
 
                              <li role="presentation" style=" padding-right:20px;">
-                               <a href="">
+                               <a href='{{url("/edit/{$post->id}")}}'>
                                  <span class="fa fa-pencil"> Edit</span>
                                </a>
                              </li>
 
                              <li role="presentation" style=" padding-right:20px;">
-                               <a href="">
+                               <a href='{{url("/delete/{$post->id}")}}'>
                                  <span class="fa fa-trash"> Delete</span>
                                </a>
                              </li>

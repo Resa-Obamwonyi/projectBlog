@@ -43,3 +43,5 @@ Route::get('/category', 'CategoryController@category');
 Route::post('/addCategory', 'CategoryController@addCategory');
 Route::post('/addProfile', 'ProfileController@addProfile');
 Route::post('/addPost', 'PostController@addPost');
+Route::get('/view/{id}', 'PostController@view');
+Route::get('/edit/{id}', 'PostController@edit');
