@@ -47,10 +47,15 @@ class PostController extends Controller
     }
 
   public function view($post_id){
-  	 return $post_id;
+  	  $posts = Post::where('id','=', $post_id)->get();
+  	  $categories = Category::all();
+  	  return view('posts.view', ['posts'=> $posts, 'categories' => $categories]);
   }
 
   public function edit($post_id){
-  	 return $post_id;
+    $categories = Category::all();
+    $posts = Post::find($post_id);
+    $category = Category::find($posts->category_id);
+  	 return view('posts.edit', ['categories'=> $categories, 'posts' => $posts, 'category' => $category]);
   }
 }

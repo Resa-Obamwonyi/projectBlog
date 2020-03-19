@@ -13,8 +13,8 @@
 
   .p_image{
         max-width: 500px;
-        border-radius:20%;
-    }
+        max-height: 500px;
+           }
 </style>
 
 @section('content')
@@ -70,13 +70,13 @@
                            <ul class="nav nav-pills">
 
                              <li role="presentation" style=" padding-right:20px;">
-                               <a href='{{ url("/view/{$post->id}") }}'>
+                               <a href='{{ url("/view={$post->id}") }}'>
                                  <span class="fa fa-eye"> View</span>
                                </a>
                              </li>
 
                              <li role="presentation" style=" padding-right:20px;">
-                               <a href='{{url("/edit/{$post->id}")}}'>
+                               <a href='{{url("/edit={$post->id}")}}'>
                                  <span class="fa fa-pencil"> Edit</span>
                                </a>
                              </li>
@@ -89,7 +89,7 @@
 
                            </ul>
 
-                          <cite style="float: left;">Posted on: {{date('M j, Y H:i', strtotime($post->update_at))}}</cite>
+                          <cite style="float: left;">Posted on: {{date('M j, Y H:i', strtotime($post->updated_at))}}</cite>
 
                           <hr>
                       @endforeach
