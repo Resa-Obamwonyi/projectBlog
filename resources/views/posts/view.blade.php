@@ -9,8 +9,21 @@
   }
 
   .p_image{
-        max-width: 500px;
+        width: 70%;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
             }
+
+@media screen and (max-width: 768px) {
+
+.cat{
+  display: none;
+}
+
+}
+
+}
 </style>
 
 @section('content')
@@ -26,11 +39,13 @@
                 <div class="card-header">Post View</div>
 
                 <div class="card-body row">
-                <div class="col-sm-4">
+
+                <div class="col-sm-4 cat">
                   <ul class="list-group">
                     @if(count($categories) > 0)
                        @foreach($categories->all() as $category)
-                    <li class="list-group-item"><a href='{{url("category/{$category->id}")}}'>{{$category->category}}</a></li>
+                    <li class="list-group-item"><a href='{{url("category={$category->id}")}}'>{{$category->category}}</a></li>
+                    <hr>
                        @endforeach
                     @else
                       <p>No Category Available</p>
@@ -48,19 +63,19 @@
                       @foreach($posts->all() as $post)
                           <h2 style="padding-top: 10px; text-align: center;">{{$post->post_title}}</h2>
                           <img style="padding-top: 15px;" src="/storage/postimages/{{$post->post_image }}" class="p_image">
-                          <p style="padding-top: 15px;">{{ $post->post_body }}</p>
+                          <p style="padding-top: 15px; text-align: left;">{{ $post->post_body }}</p>
                            
                            <ul class="nav nav-pills">
 
                              <li role="presentation" style=" padding-right:20px;">
                                <a href='{{ url("/like/{$post->id}") }}'>
-                                 <span class="fa fa-thumbs-up"> Like ()</span>
+                                 <span class="fa fa-thumbs-up"> Like ({{$likeCount}})</span>
                                </a>
                              </li>
 
                              <li role="presentation" style=" padding-right:20px;">
                                <a href='{{url("/dislike/{$post->id}")}}'>
-                                 <span class="fa fa-thumbs-down"> Dislike ()</span>
+                                 <span class="fa fa-thumbs-down"> Dislike ({{$dislikeCount}})</span>
                                </a>
                              </li>
 
@@ -71,14 +86,39 @@
                              </li>
 
                            </ul>
+                <br>
 
-
-                      @endforeach
+                @endforeach
 
                 @else
                      <p>No Posts Available</p>
                 @endif
-               
+
+                <form method="POST" action='{{ url("/comment/{$post->id} ") }}'>
+                {{ csrf_field()}}
+                  <div class="form-group">
+                    <textarea id="comment" rows="6" class="form-control" name="comment" required-autofocus></textarea>                    
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-success  btn-block" type="submit">Post Comment</button>
+                  </div>
+               </form>
+            <h4 style="text-align: left;">Comments</h4>
+            @if(count($comments) > 0)
+            @foreach($comments->all() as $comments)
+               <div style="text-align: left;">
+                 <h5>{{$comments->name}}</h5>
+                 <p>{{$comments->comment}}</p>
+                 <hr/>
+               </div>
+                 @endforeach
+                  @else
+                     <div style="text-align: left;">
+                     <p>No Comments Available</p>
+                     <hr/>
+                     </div>
+                 @endif
+
                 </div>
 
                 </div>

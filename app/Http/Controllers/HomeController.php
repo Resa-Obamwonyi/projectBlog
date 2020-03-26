@@ -36,11 +36,28 @@ class HomeController extends Controller
              ->select('users.*','profiles.*')
             ->where(['profiles.user_id' => $user_id])
             ->first();
-        $posts = Post::all(); 
+        $posts = Post::paginate(5); 
         
            /* return $profile->profile_pic;
             exit();
             */
         return view('home',['profile' => $profile,  'posts' => $posts]);
+    }
+
+    public function blog()
+    {
+        $user_id = Auth::user()->id;
+        $profile = DB::table('users')
+           ->join('profiles', 'users.id', '=',
+            'profiles.user_id')
+             ->select('users.*','profiles.*')
+            ->where(['profiles.user_id' => $user_id])
+            ->first();
+        $posts = Post::paginate(5); 
+        
+           /* return $profile->profile_pic;
+            exit();
+            */
+        return view('blog',['profile' => $profile,  'posts' => $posts]);
     }
 }

@@ -12,8 +12,10 @@
   }
 
   .p_image{
-        max-width: 500px;
-        max-height: 500px;
+        width: 70%;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
            }
 </style>
 
@@ -27,7 +29,6 @@
         <div class="alert alert-success text-center">{{Session::get('success')}}</div>
                  @endif
 
-                <div class="card-header">Dashboard</div>
 
                 <div class="card-body row">
                 <div class="col-sm-4">
@@ -74,22 +75,27 @@
                                  <span class="fa fa-eye"> View</span>
                                </a>
                              </li>
-
-                             <li role="presentation" style=" padding-right:20px;">
+                              @if(Auth::user()->id ==1)
+                              <li role="presentation" style=" padding-right:20px;">
                                <a href='{{url("/edit={$post->id}")}}'>
                                  <span class="fa fa-pencil"> Edit</span>
                                </a>
                              </li>
 
                              <li role="presentation" style=" padding-right:20px;">
-                               <a href='{{url("/delete/{$post->id}")}}'>
+                               <a href='{{url("/delete={$post->id}")}}'>
                                  <span class="fa fa-trash"> Delete</span>
                                </a>
                              </li>
+                                @endif
+
 
                            </ul>
 
                           <cite style="float: left;">Posted on: {{date('M j, Y H:i', strtotime($post->updated_at))}}</cite>
+
+                          <br>
+
 
                           <hr>
                       @endforeach
@@ -97,6 +103,8 @@
                 @else
                      <p>No Posts Available</p>
                 @endif
+
+                {{ $posts->links()}}
                 </div>
 
                 </div>

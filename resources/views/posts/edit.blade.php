@@ -34,7 +34,7 @@
                             <label for="content" class="col-md-4 col-form-label text-md-right">{{ __('Post Body') }}</label>
 
                             <div class="col-md-8 form-group">
-                                <textarea id="post_body" class="form-control" rows="7" name="post_body" value="{{ $posts->post_body}}"></textarea>
+                                <textarea id="post_body" class="form-control" rows="7" name="post_body" value="{{ $posts->post_body}}">{{ $posts->post_body}}</textarea>
                             </div>
 
                             <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
