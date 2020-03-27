@@ -33,6 +33,8 @@ class PostController extends Controller
         $extension = $request->file('post_image')->getClientOriginalExtension();
         $file = md5(uniqid()) . '.' .$extension;
         $path = $request->file('post_image')->storeAs('public/postimages', $file);
+        var_dump($path,$file);
+        die();
      }
 
 
