@@ -32,8 +32,8 @@ class PostController extends Controller
     if ($request->hasFile('post_image')) {
         $extension = $request->file('post_image')->getClientOriginalExtension();
         $file = md5(uniqid()) . '.' .$extension;
-        $path = $request->file('post_image')->storeAs('public/postimages', $file);
-        
+        $path = $request->file('post_image')->storeAs('public/postimages', $file, 's3');
+
      }
 
 
