@@ -36,7 +36,7 @@ class HomeController extends Controller
              ->select('users.*','profiles.*')
             ->where(['profiles.user_id' => $user_id])
             ->first();
-        $posts = Post::paginate(5); 
+        $posts = Post::orderBy('created_at','desc')->paginate(5); 
         
            /* return $profile->profile_pic;
             exit();
@@ -53,7 +53,7 @@ class HomeController extends Controller
              ->select('users.*','profiles.*')
             ->where(['profiles.user_id' => $user_id])
             ->first();
-        $posts = Post::paginate(5); 
+        $posts = Post::orderBy('created_at','desc')->paginate(5); 
         
            /* return $profile->profile_pic;
             exit();
