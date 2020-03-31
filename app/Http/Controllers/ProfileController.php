@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Validator,Redirect,Response,File;
 use App\Profile;
 
@@ -12,7 +13,9 @@ class ProfileController extends Controller
         return view('profiles.profile');
     }
 
+
 public function addProfile(Request $request){
+    
         $this->validate($request, [
             'name'=> 'required',
             'designation'=> 'required',
@@ -29,7 +32,7 @@ public function addProfile(Request $request){
     if ($request->hasFile('profile_pic')) {
         $extension = $request->file('profile_pic')->getClientOriginalExtension();
         $file = md5(uniqid()) . '.' .$extension;
-        $path = $request->file('profile_pic')->storeAs('public/profilepic', $file);
+        $path = Storage::disk('s3')->put( $file, fopen($request->file('profile_pic'), 'r+'), 'public');
      }
 
         $profile = Profile::forceCreate([

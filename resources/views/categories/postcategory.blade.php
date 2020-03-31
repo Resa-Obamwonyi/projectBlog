@@ -51,7 +51,7 @@
 
                       @foreach($posts->all() as $post)
                           <h2 style="padding-top: 10px; text-align: center;">{{$post->post_title}}</h2>
-                          <img style="padding-top: 15px;" src="/storage/postimages/{{$post->post_image }}" class="p_image">
+                          <img style="padding-top: 15px;" src="https://einkbucket.s3.eu-west-2.amazonaws.com/{{ $post->post_image }}" class="p_image">
                           <p style="padding-top: 15px; text-align: left;">{{ $post->post_body }}</p>
                         
 

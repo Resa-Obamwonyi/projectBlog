@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Category;
 use App\Post;
 use App\Profile;
@@ -32,7 +33,10 @@ class PostController extends Controller
     if ($request->hasFile('post_image')) {
         $extension = $request->file('post_image')->getClientOriginalExtension();
         $file = md5(uniqid()) . '.' .$extension;
-        $path = $request->file('post_image')->storeAs('public/postimages', $file, 's3');
+        //$path = $request->file('post_image')->store('postimages', 's3');
+        $path = Storage::disk('s3')->put( $file, fopen($request->file('post_image'), 'r+'), 'public');
+
+        //$path = $request->file('post_image')->storeAs::('public/postimages', $file, );
 
      }
 
