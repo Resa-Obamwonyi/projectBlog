@@ -24,7 +24,7 @@
                        <div class="alert alert-success">{{session('response')}}</div>
                     @endif
                         <div class="form-group row">
-                            <label for="category" class="col-md-4 col-form-label text-md-right">{{ __(' Post Title') }}</label>
+                            <label for="category" class="col-md-4 col-form-label text-md-right">{{ __(' Add New Category') }}</label>
 
                             <div class="col-md-6">
                                 <input id="category" type="text" class="form-control" name="category" value="">
