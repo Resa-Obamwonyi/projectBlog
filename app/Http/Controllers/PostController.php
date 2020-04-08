@@ -24,8 +24,8 @@ class PostController extends Controller
 
     	//return $request->input('post_title');
     	$this->validate($request, [
-            'post_title'=> 'required',
-            'post_body'=> 'required',
+            'post_title'=> 'required|min:3',
+            'post_body'=> 'required|min:100',
             'category_id'=> 'required',
             'post_image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
      ]);

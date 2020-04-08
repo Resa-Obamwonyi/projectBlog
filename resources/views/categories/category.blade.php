@@ -27,7 +27,7 @@
                             <label for="category" class="col-md-4 col-form-label text-md-right">{{ __(' Add New Category') }}</label>
 
                             <div class="col-md-6">
-                                <input id="category" type="text" class="form-control" name="category" value="">
+                                <input id="category" type="text" class="form-control" name="category" value="" required="">
                             </div>
                         </div>
 
