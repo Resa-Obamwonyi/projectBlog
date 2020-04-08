@@ -17,8 +17,8 @@ class ProfileController extends Controller
 public function addProfile(Request $request){
     
         $this->validate($request, [
-            'name'=> 'required|3',
-            'designation'=> 'required|4',
+            'name'=> 'required|min:3',
+            'designation'=> 'required|min:4',
             'profile_pic'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
      ]);
 

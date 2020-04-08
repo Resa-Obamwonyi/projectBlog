@@ -96,6 +96,11 @@
 
                 <form method="POST" action='{{ url("/comment/{$post->id} ") }}'>
                 {{ csrf_field()}}
+                @if(count($errors) > 0)
+                      @foreach($errors->all() as $error)
+                        <div class="alert alert-danger">{{$error}}</div>
+                      @endforeach
+                    @endif
                   <div class="form-group">
                     <textarea id="comment" rows="6" class="form-control" name="comment" required-autofocus></textarea>                    
                   </div>

@@ -180,7 +180,7 @@ class PostController extends Controller
 
   public function comment(Request $request, $post_id){
           $this->validate($request, [
-            'comment'=> 'required|6',
+            'comment'=> 'required|min:6',
      ]);
           $comment = new Comment;
           $comment->user_id = Auth::user()->id;
