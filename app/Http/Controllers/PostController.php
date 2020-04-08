@@ -83,8 +83,8 @@ class PostController extends Controller
 
   public function editPost( Request $request, $post_id){
       $this->validate($request, [
-            'post_title'=> 'required',
-            'post_body'=> 'required',
+            'post_title'=> 'required|min:3',
+            'post_body'=> 'required|min:100',
             'category_id'=> 'required',
             'post_image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
      ]);
@@ -180,7 +180,7 @@ class PostController extends Controller
 
   public function comment(Request $request, $post_id){
           $this->validate($request, [
-            'comment'=> 'required',
+            'comment'=> 'required|6',
      ]);
           $comment = new Comment;
           $comment->user_id = Auth::user()->id;
